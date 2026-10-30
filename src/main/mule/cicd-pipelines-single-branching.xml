@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+	<flow name="cicd-pipelines-single-branchingFlow" doc:id="27fadc96-22da-4b0d-96be-f67ff5ae9989" >
+		<http:listener doc:name="Listener" doc:id="46a0117a-a539-43a6-982a-334eadebcc3f" config-ref="HTTP_Listener_config" path="/api"/>
+		<ee:transform doc:name="Transform Message" doc:id="8ea38a40-593f-4b4f-9fea-b964a3df340e" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+payload]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+		<logger level="INFO" doc:name="Logger" doc:id="7f12daf9-6b0e-402e-aee7-612ac59aa887" message="#[payload]"/>
+	</flow>
+</mule>

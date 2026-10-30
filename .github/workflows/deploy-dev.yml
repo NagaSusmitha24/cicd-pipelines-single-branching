@@ -1,0 +1,16 @@
+name: Deploy to Dev
+
+on:
+  push:
+    branches: [dev]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    uses: NagaSusmitha24/common-pipeline/.github/workflows/mulesoft-sapi-ci-cd.yaml@main
+    with:
+      environment: dev
+    secrets: inherit

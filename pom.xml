@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
+	<!-- groupId must be the Anypoint business group ID; the pipeline passes -Dbusiness.group.id -->
 	<groupId>${business.group.id}</groupId>
-	<artifactId>cicd-pipelines-single-branching</artifactId>
-	<version>1.0.0</version>
+	<artifactId>cicd-pipelines-single-branching-v1</artifactId>
+	<version>1.0.1</version>
 	<packaging>mule-application</packaging>
 
 	<name>cicd-pipelines-single-branching</name>
@@ -30,36 +33,37 @@
 				<version>${mule.maven.plugin.version}</version>
 				<extensions>true</extensions>
 				<configuration>
-    <cloudhub2Deployment>
-        <uri>https://anypoint.mulesoft.com</uri>
-        <provider>MC</provider>
-        <muleVersion>4.12.2</muleVersion>
-        <connectedAppClientId>${ca.client.id}</connectedAppClientId>
-        <connectedAppClientSecret>${ca.client.secret}</connectedAppClientSecret>
-        <connectedAppGrantType>client_credentials</connectedAppGrantType>
-        <businessGroupId>${business.group.id}</businessGroupId>
-        <environment>${ch.environment}</environment>
-        <target>Cloudhub-US-East-2</target>
-        <applicationName>${application.name}</applicationName>
-        <replicas>1</replicas>
-        <vCores>0.1</vCores>
-        <deploymentSettings>
-            <lastMileSecurity>false</lastMileSecurity>
-            <forwardSslSession>false</forwardSslSession>
-            <generateDefaultPublicUrl>true</generateDefaultPublicUrl>
-        </deploymentSettings>
-        <properties>
-            <anypoint.platform.client_id>${platform.client.id}</anypoint.platform.client_id>
-            <anypoint.platform.client_secret>${platform.client.secret}</anypoint.platform.client_secret>
-            <key>${mule.key}</key>
-            <env>${env}</env>
-        </properties>
-    </cloudhub2Deployment>
-    <classifier>mule-application</classifier>
-</configuration>
+					<classifier>mule-application</classifier>
+					<cloudhub2Deployment>
+						<uri>https://anypoint.mulesoft.com</uri>
+						<provider>MC</provider>
+						<muleVersion>${app.runtime}</muleVersion>
+						<connectedAppClientId>${ca.client.id}</connectedAppClientId>
+						<connectedAppClientSecret>${ca.client.secret}</connectedAppClientSecret>
+						<connectedAppGrantType>client_credentials</connectedAppGrantType>
+						<businessGroupId>${business.group.id}</businessGroupId>
+						<environment>${ch.environment}</environment>
+						<target>Cloudhub-US-East-2</target>
+						<applicationName>${application.name}</applicationName>
+						<replicas>1</replicas>
+						<vCores>0.1</vCores>
+						<deploymentSettings>
+							<lastMileSecurity>false</lastMileSecurity>
+							<forwardSslSession>false</forwardSslSession>
+							<generateDefaultPublicUrl>true</generateDefaultPublicUrl>
+						</deploymentSettings>
+						<properties>
+							<anypoint.platform.client_id>${platform.client.id}</anypoint.platform.client_id>
+							<anypoint.platform.client_secret>${platform.client.secret}</anypoint.platform.client_secret>
+							<key>${mule.key}</key>
+							<env>${env}</env>
+						</properties>
+					</cloudhub2Deployment>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
+
 	<distributionManagement>
 		<repository>
 			<id>anypoint-exchange-v3</id>
@@ -103,12 +107,11 @@
 		<pluginRepository>
 			<id>mulesoft-releases</id>
 			<name>MuleSoft Releases Repository</name>
-			<layout>default</layout>
 			<url>https://repository.mulesoft.org/nexus/repository/releases/</url>
+			<layout>default</layout>
 			<snapshots>
 				<enabled>false</enabled>
 			</snapshots>
 		</pluginRepository>
 	</pluginRepositories>
-
 </project>

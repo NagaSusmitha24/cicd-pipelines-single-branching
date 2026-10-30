@@ -1,16 +1,42 @@
 name: Deploy to Dev
+on: 
 
-on:
-  push:
-    branches: [dev]
-  workflow_dispatch:
+  pull_request: 
 
-permissions:
-  contents: read
+    branches: 
 
-jobs:
-  deploy:
-    uses: NagaSusmitha24/common-pipeline/.github/workflows/mulesoft-sapi-ci-cd.yml@main
-    with:
-      environment: dev
+      - dev   
+
+  workflow_dispatch: 
+
+    inputs: 
+
+      environment: 
+
+        description: Environment to deploy to 
+
+        type: choice 
+
+        options: 
+
+          - dev 
+
+          - qa  
+
+          - prod 
+
+        default: dev        
+
+  
+
+jobs: 
+
+  pipeline: 
+
+    uses: NagaSusmitha24/common-pipeline/.github/workflows/mulesoft-sapi-ci-cd.yml@main 
+
+    with: 
+
+      environment: ${{ inputs.environment || 'dev' }} 
+
     secrets: inherit

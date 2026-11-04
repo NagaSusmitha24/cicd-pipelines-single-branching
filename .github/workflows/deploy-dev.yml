@@ -5,7 +5,8 @@ on:
 
     branches: 
 
-      - dev   
+      - dev 
+      - uat
 
   workflow_dispatch: 
 
@@ -20,12 +21,13 @@ on:
         options: 
 
           - dev 
+          - uat
 
           - qa  
 
           - prod 
 
-        default: dev        
+        default: uat       
 
   
 

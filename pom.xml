@@ -6,8 +6,8 @@
 
 	<!-- groupId must be the Anypoint business group ID; the pipeline passes -Dbusiness.group.id -->
 	<groupId>${business.group.id}</groupId>
-	<artifactId>cicd-pipelines-single-branching-uat</artifactId>
-	<version>1.0.7</version>
+	<artifactId>cicd-pipelines-single-branching-uat-v8</artifactId>
+	<version>1.0.8</version>
 	<packaging>mule-application</packaging>
 
 	<name>cicd-pipelines-single-branching</name>

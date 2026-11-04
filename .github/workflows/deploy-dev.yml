@@ -5,7 +5,7 @@ on:
 
     branches: 
 
-      - dev 
+     
       - uat
 
   workflow_dispatch: 
@@ -39,6 +39,6 @@ jobs:
 
     with: 
 
-      environment: ${{ inputs.environment || 'dev' }} 
+      environment: ${{ inputs.environment || 'uat' }} 
 
     secrets: inherit
